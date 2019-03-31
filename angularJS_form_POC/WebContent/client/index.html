@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+ <link rel="shortcut icon" href="icon.png">
 <title>angularJS POC</title>
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -16,6 +16,10 @@
 
 <script type = "text/javascript" src="app.js"></script>
 <script type="text/javascript" src="formSubmission.controller.js"></script>
+<script type="text/javascript" src="formSubmission.services.js"></script>
+<script type="text/javascript" src="../client/customDirectives/display.directives.js"></script>
+<script src="../client/customDirectives/display.controller.js"></script>
+
 </head>
 <body ng-app="Forms" ng-controller="formController">
 	<div class="row" >
@@ -73,7 +77,8 @@
 	</div>
 	
 	<div class="col-md-6">
-	<div ui-grid="gridOptions" class="myGrid" ng-if="detailsSaved"></div>
+		<display-details detailedinfo="employees"></display-details>
+	<!-- <div ui-grid="gridOptions" class="myGrid" ng-if="detailsSaved"></div> -->
 	</div>
 	
 	</div>

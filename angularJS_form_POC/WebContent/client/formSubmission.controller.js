@@ -23,7 +23,7 @@ app.controller('formController',['$scope','FormServices',function($scope,FormSer
 	
 	$scope.saveDetails = function(){
 		console.log('it is clicked');
-		if(validateForm())
+		if(FormServices.validateForm($scope))
 			return;
 		var employee = {
 				fullName : $scope.fullName,
@@ -33,6 +33,7 @@ app.controller('formController',['$scope','FormServices',function($scope,FormSer
 				employeeLocation : $scope.employeeLocation,
 				experience : $scope.exp
 		};
+	
 		FormServices.saveEmployeeDetails(employee).then(function(response){
 			response.data = employee;
 			$scope.detailsSaved = true;
@@ -58,7 +59,7 @@ app.controller('formController',['$scope','FormServices',function($scope,FormSer
 		else
 			return 'Unavailable';
 	}
-	function validateForm(){
+	/*function validateForm(){
 		var errorField = false;//No error if this field is set to true
 		if(!$scope.fullName || !/^[a-zA-Z ]*$/.test($scope.fullName)){
 			$scope.displayErrorName = true;
@@ -90,18 +91,5 @@ app.controller('formController',['$scope','FormServices',function($scope,FormSer
 		}
 		return errorField;
 			
-	}
+	}*/
 }]);
-
-app.factory('FormServices',function($http){
-	var baseUrl = 'https://localhost:8070';
-	var formServices = {
-			saveEmployeeDetails : saveEmployeeDetails
-	};
-	function saveEmployeeDetails(empObj){
-		console.log(empObj+" :Check Emp obj");
-		return $http.get(baseUrl+'/abc.php/?info='+empObj);
-		//return empObj;
-	};
-	return formServices;
-})
